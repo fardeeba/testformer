@@ -57,6 +57,7 @@ from mask2former import (
     SemanticSegmentorWithTTA,
     add_maskformer2_config,
 )
+from register_custom_data import register_all_custom_dataset
 
 
 class Trainer(DefaultTrainer):
@@ -288,6 +289,15 @@ def setup(args):
     add_maskformer2_config(cfg)
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
+    cfg.DATASETS.TRAIN = ("BraTS20_train",)
+    cfg.DATASETS.TEST = ("BraTS20_val",)
+    cfg.MODEL.SEM_SEG_HEAD.NUM_CLASSES = 3
+    cfg.INPUT.CROP.SIZE = (128,128,)
+    cfg.INPUT.MIN_SIZE_TEST = 128
+    cfg.INPUT.COLOR_AUG_SSD = False
+    cfg.INPUT.FORMAT = "L"
+    cfg.MODEL.SEM_SEG_HEAD.IGNORE_VALUE = 0
+    # cfg.SOLVER.MAX_ITER = 30000
     cfg.freeze()
     default_setup(cfg, args)
     # Setup logger for "mask_former" module
@@ -296,6 +306,7 @@ def setup(args):
 
 
 def main(args):
+    register_all_custom_dataset('datasets/Brats_patches_flair_axial_view')
     cfg = setup(args)
 
     if args.eval_only:
