@@ -11,22 +11,22 @@ MODEL:
     DROP_PATH_RATE: 0.3
     PATCH_NORM: True
     PRETRAIN_IMG_SIZE: 384
-  WEIGHTS: "swin_base_patch4_window12_384.pkl"
+  WEIGHTS: ""
   PIXEL_MEAN: [123.675, 116.280, 103.530]
   PIXEL_STD: [58.395, 57.120, 57.375]
 INPUT:
   MIN_SIZE_TRAIN: !!python/object/apply:eval ["[int(x * 0.1 * 640) for x in range(5, 21)]"]
   MIN_SIZE_TRAIN_SAMPLING: "choice"
-  MIN_SIZE_TEST: 640
+  MIN_SIZE_TEST: 128
   MAX_SIZE_TRAIN: 2560
   MAX_SIZE_TEST: 2560
   CROP:
     ENABLED: True
     TYPE: "absolute"
-    SIZE: (640, 640)
+    SIZE: (128, 128)
     SINGLE_CATEGORY_MAX_AREA: 1.0
   COLOR_AUG_SSD: True
-  SIZE_DIVISIBILITY: 640  # used in dataset mapper
+  SIZE_DIVISIBILITY: 128  # used in dataset mapper
   FORMAT: "RGB"
 TEST:
   EVAL_PERIOD: 5000

@@ -3,7 +3,8 @@ from detectron2.data import MetadataCatalog, DatasetCatalog
 from detectron2.data.datasets import load_sem_seg
 
 
-CUSTOM_DATASET_CATEGORIES = [{"id": 1, "name":"NECROTIC"},
+CUSTOM_DATASET_CATEGORIES = [{"id": 0, "name":"NOT tumor"},
+                            {"id": 1, "name":"NECROTIC"},
                              {"id": 2, "name":"EDEMA"},
                              {"id": 3, "name":"ENHANCING"}]
 
