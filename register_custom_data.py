@@ -3,10 +3,10 @@ from detectron2.data import MetadataCatalog, DatasetCatalog
 from detectron2.data.datasets import load_sem_seg
 
 
-CUSTOM_DATASET_CATEGORIES = [{"id": 0, "name":"NOT tumor"},
-                            {"id": 1, "name":"NECROTIC"},
-                             {"id": 2, "name":"EDEMA"},
-                             {"id": 3, "name":"ENHANCING"}]
+CUSTOM_DATASET_CATEGORIES = [{"name": "NOT tumor", "id": 0, "trainId": 0},
+                            {"name": "NECROTIC", "id": 1, "trainId": 1},
+                            {"name": "EDEMA", "id": 2, "trainId": 2},
+                            {"name": "ENHANCING", "id": 3, "trainId": 3}]
 
 def _get_custom_dataset_meta():
     # Define your custom dataset categories and ids
@@ -25,8 +25,8 @@ def register_all_custom_dataset(root):
     meta = _get_custom_dataset_meta()
     print("meta: ",meta)
     for name, dirname in [("train", "training"), ("val", "validation")]:  # Adjust dir names as per your dataset
-        image_dir = os.path.join(root, "images", dirname)
-        gt_dir = os.path.join(root, "annotations", dirname)
+        image_dir = os.path.join(root, "images_detectron2", dirname)
+        gt_dir = os.path.join(root, "annotations_detectron2", dirname)
         name = f"BraTS20_{name}"
         DatasetCatalog.register(
             name, lambda x=image_dir, y=gt_dir: load_sem_seg(y, x, gt_ext="tiff", image_ext="tiff")  # You can change the extensions
