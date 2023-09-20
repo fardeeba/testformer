@@ -23,6 +23,7 @@ def _get_custom_dataset_meta():
 
 def register_all_custom_dataset(root):
     meta = _get_custom_dataset_meta()
+    print("meta: ",meta)
     for name, dirname in [("train", "training"), ("val", "validation")]:  # Adjust dir names as per your dataset
         image_dir = os.path.join(root, "images", dirname)
         gt_dir = os.path.join(root, "annotations", dirname)
