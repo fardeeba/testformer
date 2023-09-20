@@ -10,6 +10,7 @@ from PIL import Image
 
 def convert(input, output):
     img = np.asarray(Image.open(input))
+    img = img.astype(np.uint8)
     assert img.dtype == np.uint8
     img = img - 1  # 0 (ignore) becomes 255. others are shifted by 1
     Image.fromarray(img).save(output)
@@ -17,8 +18,8 @@ def convert(input, output):
 if __name__ == "__main__":
     dataset_dir = 'datasets/Brats_patches_flair_axial_view'
     for name in ["training", "validation"]:
-        annotation_dir = os.path.join(dataset_dir,"annotations",name)
-        output_dir = os.path.join(dataset_dir,"annotations_detectron2",name)
+        annotation_dir = Path(dataset_dir + "/annotations/" + name)
+        output_dir = Path(dataset_dir + "/annotations_detectron2/" + name)
         output_dir.mkdir(parents=True, exist_ok=True)
         for file in tqdm.tqdm(list(annotation_dir.iterdir())):
             output_file = output_dir / file.name

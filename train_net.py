@@ -296,7 +296,7 @@ def setup(args):
     cfg.INPUT.MIN_SIZE_TEST = 128
     cfg.INPUT.COLOR_AUG_SSD = False
     cfg.INPUT.FORMAT = "L"
-    cfg.MODEL.SEM_SEG_HEAD.IGNORE_VALUE = 0
+    cfg.MODEL.SEM_SEG_HEAD.IGNORE_VALUE = 255
     # cfg.SOLVER.MAX_ITER = 30000
     cfg.freeze()
     default_setup(cfg, args)
