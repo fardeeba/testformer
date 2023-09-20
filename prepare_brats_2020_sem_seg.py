@@ -19,8 +19,8 @@ def convert(input, output):
 if __name__ == "__main__":
     dataset_dir = 'datasets/Brats_patches_flair_axial_view'
     for name in ["training", "validation"]:
-        annotation_dir = dataset_dir + "/annotations/" + name
-        output_dir = dataset_dir + "/annotations_detectron2/" + name
+        annotation_dir = os.path.join(dataset_dir,"annotations",name)
+        output_dir = os.path.join(dataset_dir,"annotations_detectron2",name)
         output_dir.mkdir(parents=True, exist_ok=True)
         for file in tqdm.tqdm(list(annotation_dir.iterdir())):
             output_file = output_dir / file.name
