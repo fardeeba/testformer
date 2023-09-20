@@ -8,13 +8,11 @@ import numpy as np
 import tqdm
 from PIL import Image
 
-
 def convert(input, output):
     img = np.asarray(Image.open(input))
     assert img.dtype == np.uint8
     img = img - 1  # 0 (ignore) becomes 255. others are shifted by 1
     Image.fromarray(img).save(output)
-
 
 if __name__ == "__main__":
     dataset_dir = 'datasets/Brats_patches_flair_axial_view'
