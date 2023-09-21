@@ -291,12 +291,12 @@ def setup(args):
     cfg.merge_from_list(args.opts)
     cfg.DATASETS.TRAIN = ("BraTS20_train",)
     cfg.DATASETS.TEST = ("BraTS20_val",)
-    cfg.MODEL.SEM_SEG_HEAD.NUM_CLASSES = 3
+    cfg.MODEL.SEM_SEG_HEAD.NUM_CLASSES = 4
     cfg.INPUT.CROP.SIZE = (128,128,)
     cfg.INPUT.MIN_SIZE_TEST = 128
     cfg.INPUT.COLOR_AUG_SSD = False
     cfg.INPUT.FORMAT = "L"
-    cfg.MODEL.SEM_SEG_HEAD.IGNORE_VALUE = 255
+    cfg.MODEL.SEM_SEG_HEAD.IGNORE_VALUE = 0
     # cfg.SOLVER.MAX_ITER = 30000
     cfg.freeze()
     default_setup(cfg, args)

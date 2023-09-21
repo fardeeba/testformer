@@ -26,7 +26,7 @@ def register_all_custom_dataset(root):
     print("meta: ",meta)
     for name, dirname in [("train", "training"), ("val", "validation")]:  # Adjust dir names as per your dataset
         image_dir = os.path.join(root, "images", dirname)
-        gt_dir = os.path.join(root, "annotations_detectron2", dirname)
+        gt_dir = os.path.join(root, "annotations", dirname)
         name = f"BraTS20_{name}"
         DatasetCatalog.register(
             name, lambda x=image_dir, y=gt_dir: load_sem_seg(y, x, gt_ext="tiff", image_ext="tiff")  # You can change the extensions
