@@ -29,7 +29,7 @@ def register_all_custom_dataset(root):
         gt_dir = os.path.join(root, "annotations_detectron2", dirname)
         name = f"BraTS20_{name}"
         DatasetCatalog.register(
-            name, lambda x=image_dir, y=gt_dir: load_sem_seg(y, x, gt_ext="tif", image_ext="tif")  # You can change the extensions
+            name, lambda x=image_dir, y=gt_dir: load_sem_seg(y, x, gt_ext="tiff", image_ext="tiff")  # You can change the extensions
         )
         MetadataCatalog.get(name).set(
             stuff_classes=meta["stuff_classes"][:],
